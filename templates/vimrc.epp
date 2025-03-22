@@ -1,0 +1,39 @@
+syntax on
+
+" don't care for concealing with json files
+let g:vim_json_syntax_conceal = 0
+
+" To ensure that warning and error messages show in the status line
+set statusline+=%{coc#status()}
+
+set autoindent
+set smartindent
+
+" Update title of window or terminal
+set title
+
+" Enable line numbers
+set number
+
+
+" Max memory to use for pattern matching
+set maxmempattern=40000
+
+" Highlight non-ASCII characters
+" https://stackoverflow.com/a/26209681
+highlight NonASCII ctermbg=DarkRed guibg=DarkRed
+call matchadd('NonASCII', '[^\u0000-\u007F]')
+
+" Highlight Literal Tabs
+highlight LiteralTab ctermbg=Yellow guibg=Yellow
+call matchadd('LiteralTab', '\t')
+
+" Highlight Trailing Whitespace
+highlight TrailingWhitespace ctermbg=White guibg=White
+call matchadd('TrailingWhitespace', '\s\+$')
+
+autocmd BufNewFile,BufRead *.pp setlocal expandtab tabstop=2 shiftwidth=2 softtabstop=2
+autocmd BufNewFile,BufRead *.rb setlocal expandtab tabstop=2 shiftwidth=2 softtabstop=2
+autocmd BufNewFile,BufRead *.erb setlocal expandtab tabstop=2 shiftwidth=2 softtabstop=2
+autocmd BufNewFile,BufRead *.epp setlocal expandtab tabstop=2 shiftwidth=2 softtabstop=2
+autocmd BufNewFile,BufRead *.json setlocal expandtab tabstop=2 shiftwidth=2 softtabstop=2 conceallevel=0
