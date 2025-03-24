@@ -9,7 +9,6 @@ class vim (
     Boolean $install_vim_ruby      = true,
     Boolean $install_yaml_vim      = true,
 ) {
-
     package { 'vim':
         name   => 'vim',
         ensure => present,
