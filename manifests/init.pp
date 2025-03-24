@@ -19,6 +19,10 @@ class vim (
   Boolean $install_vim_ruby    = true,
   Boolean $install_yaml_vim    = true,
 ) {
+  package { 'git':
+    ensure => present,
+  }
+
   package { 'vim':
     ensure => present,
     name   => 'vim',
@@ -35,13 +39,36 @@ class vim (
     require => Package['vim'],
   }
 
-  file { "/home/${vim::user}/.vim/pack/plugins/start/":
+  file { "/home/${vim::user}/.vim/":
     ensure  => directory,
-    recurse => true,
     owner   => $vim::user,
     group   => $vim::group,
     mode    => '0755',
-    require => File["/home/${vim::user}/.vimrc"],
+    require => Package['vim'],
+  }
+
+  file { "/home/${vim::user}/.vim/pack/":
+    ensure  => directory,
+    owner   => $vim::user,
+    group   => $vim::group,
+    mode    => '0755',
+    require => File["/home/${vim::user}/.vim/"],
+  }
+
+  file { "/home/${vim::user}/.vim/pack/plugins/":
+    ensure  => directory,
+    owner   => $vim::user,
+    group   => $vim::group,
+    mode    => '0755',
+    require => File["/home/${vim::user}/.vim/pack/"],
+  }
+
+  file { "/home/${vim::user}/.vim/pack/plugins/start/":
+    ensure  => directory,
+    owner   => $vim::user,
+    group   => $vim::group,
+    mode    => '0755',
+    require => File["/home/${vim::user}/.vim/pack/plugins/"],
   }
 
   $plugins = {
