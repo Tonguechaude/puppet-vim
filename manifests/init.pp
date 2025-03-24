@@ -1,3 +1,13 @@
+# @summary Insatll and configure vim for puppet
+# @param user User account name
+# @param group User account group name
+# @param install_rust_vim If true this puppet module install rust-vim
+# @param install_vim_airline If true this puppet module install vim-airline
+# @param install_vim_json If true this puppet module install vim-json
+# @param install_vim_puppet If true this puppet module install vim-puppet
+# @param install_vim_ruby If true this puppet module install vim-ruby
+# @param install_yaml_vim If true this puppet module install yaml-vim
+
 class vim (
   String[1] $user  = 'tongue',
   String[1] $group = 'tongue',
